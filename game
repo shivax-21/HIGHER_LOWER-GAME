@@ -1,5 +1,5 @@
 from art import logo, vs
-from main import data
+from data import data
 import clear
 import random
 
