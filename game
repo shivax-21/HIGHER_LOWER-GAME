@@ -1,0 +1,45 @@
+from art import logo, vs
+from main import data
+import clear
+import random
+
+def compare(a,b):
+  if a > b:
+    return a
+  else :
+    return b
+
+def game_data(account):
+  return f"{account['name']}, a {account['description']}, from {account['country']}."
+
+def game_start():
+    count = 0
+    choice_1 = random.choice(data)
+    choice_2 = random.choice(data)
+    answer_was_true = False
+    while not answer_was_true :
+      choice_1 = choice_2
+      choice_2 = random.choice(data)
+
+      while choice_1 == choice_2:
+        choice_2 = random.choice(data)
+
+      print(f"Compare A : {game_data(choice_1)}")
+      print(vs)
+      print(f"Compare B : {game_data(choice_2)}")
+      user_input = input("Who has more followers? type A or B :")
+      if user_input == 'A':
+        answer = choice_1['follower_count']
+      elif user_input == 'B':
+        answer = choice_2['follower_count']
+      result = compare(choice_1['follower_count'] , choice_2['follower_count'])
+      if result == answer:
+        count+=1
+        print(f"You Were right.... and your score is {count}.")
+      else:
+        answer_was_true = True
+        print(f"The guess was wrong...Your final score is {count}.")
+
+
+print(logo)
+game_start()
